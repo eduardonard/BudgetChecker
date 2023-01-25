@@ -24,21 +24,60 @@ db = SQL("sqlite:///finance.db")
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
+    user_id = session["user_id"] 
+    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)[0]["username"]
+    income_db = db.execute("SELECT amount, category, date, comment FROM transactions WHERE user_id = ? AND amount > 0 ORDER BY date DESC", user_id)
+    liabilities_db = db.execute("SELECT amount, category, date, comment FROM transactions WHERE user_id = ? AND amount < 0 ORDER BY date DESC", user_id)
+    incCategori = db.execute("SELECT category FROM categories WHERE user_id = ? AND type = 'income'",user_id)
+    expCategori = db.execute("SELECT category FROM categories WHERE user_id = ? AND type = 'liability'",user_id)
+    cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
+    home = render_template("index.html", income_db = income_db, liabilities_db = liabilities_db, cash = cash, incCategories=incCategori, expCategories = expCategori, username=username)
     if request.method == "GET":
-        return render_template("index.html", database = transactions_db, cash = cash)
-    """Show portfolio of stocks"""
-    user_id = session["user_id"]
+        return home
+    elif request.method == "POST" and request.form.get("amount") != None:
+        cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
+        amount = request.form.get("amount")
+        category = request.form.get("category")          
+        date = request.form.get("date")
+        comment = request.form.get("comment")
+        how = request.form.get("how")
+        if category == None:
+            income_db = db.execute("SELECT amount, category, date FROM transactions WHERE user_id = ? AND amount > 0", user_id)
+            liabilities_db = db.execute("SELECT amount, category, date FROM transactions WHERE user_id = ? AND amount < 0", user_id)
+            cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
+            flash("Must select category")
+            return home
+        amount = int(amount)
+        db.execute("INSERT INTO transactions (user_id, amount, category, date, comment) VALUES (?, ?, ?, ?, ?)", user_id, amount, category, date, comment)
+        db.execute("UPDATE users SET cash = ? WHERE id = ?", cash + amount, user_id)
+        cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
+        income_db = db.execute("SELECT amount, category, date FROM transactions WHERE user_id = ? AND amount > 0", user_id)
+        liabilities_db = db.execute("SELECT amount, category, date FROM transactions WHERE user_id = ? AND amount < 0", user_id)
+    return redirect("/")
 
-    transactions_db = db.execute("SELECT symbol, SUM(shares), price FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
-    cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
-    cash = usd(cash_db[0]["cash"])
-
-    return render_template("index.html", database = transactions_db, cash = cash)
 
 @app.route("/settings", methods=["GET", "POST"])
 @login_required
 def settings():
-    return render_template("settings.html")
+    user_id = session["user_id"]
+    username = db.execute("SELECT username FROM users WHERE id = ?", user_id)[0]["username"]
+    categori = db.execute("SELECT category FROM categories WHERE user_id = ?", user_id)
+    transactions = db.execute("SELECT * FROM transactions WHERE user_id = ?", user_id)
+    if request.method == "GET":
+        return render_template("settings.html", categories = categori, transactions = transactions, username = username)
+    elif request.method == "POST" and request.form.get("newCash") != None:
+        db.execute("UPDATE users SET cash = ? WHERE id = ?", int(request.form.get("newCash")), user_id)
+    elif request.method == "POST" and request.form.get("addCategory") != None:
+        db.execute("INSERT INTO categories (category , type, user_id) VALUES (?, ?, ?)", request.form.get("addCategory"), request.form.get("addCategoryType"), user_id)
+    elif request.method == "POST" and request.form.get("remCategory") != None:
+        db.execute("DELETE FROM categories WHERE category = ?", request.form.get("remCategory"))
+    elif request.method == "POST" and request.form.get("remTransaction") != None:
+        db.execute("DELETE FROM transactions WHERE id = ?", request.form.get("remTransaction"))
+    elif request.method == "POST":
+        return redirect("/settings")
+    return redirect("/settings")
+
+    
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
