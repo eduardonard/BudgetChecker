@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <div id="div-with-bg">
+        <h1 style="line-height: 250%;">Current cash:  {{ cash }}</h1>
+    </div>
+    <br>
+    <div id="welcomeDiv"  style="display:none;" class="answer_list" >
+        <form action="/" method="post">
+            <input type="text" name="category" placeholder="Category">
+            <input type="number" name="amount" placeholder="Amount">
+            <input type="date" name="date">
+            <input type="text" name="comment" placeholder="Comment">
+            <input type="submit" value="+">
+        </form>
+    </div>
+    <input type="button" id="tohide" name="answer" value="Add transaction" onclick="showDiv()" />
+
+
+    <br><br>
+    <table class="table"  style=" margin-left: 10%; width: 30%; float: left ;">
+        <thead>
+            <tr>
+                <th colspan="3">Income</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Date</td>
+                <td>Amount</td>
+                <td>Category</td>
+            </tr>
+            {% for row in income_db %}
+            <tr>
+                <td>{{ row[date] }}</td>
+                <td>{{ row[amount] }}</td>
+                <td>{{ row[category] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table class="table" style=" margin-right: 10%; width: 30%; float: right">
+        <thead>
+            <tr>
+                <th colspan="3">Liabilities</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Date</td>
+                <td>Amount</td>
+                <td>Category</td>
+            </tr>
+            {% for row in liabilities_db %}
+            <tr>
+                <td>{{ row[date] }}</td>
+                <td>{{ row[amount] }}</td>
+                <td>{{ row[category] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

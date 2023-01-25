@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+
+
+{% block title %}
+    Settings
+{% endblock %}
+
+{% block main %}
+    <script>function showAddCat() {
+        document.getElementById('addCategories').style.display = "block";
+        document.getElementById('addCategoryButton').style.display = "none";
+    }</script>
+    <script>function showRemCat() {
+        document.getElementById('remCategories').style.display = "block";
+        document.getElementById('remCategoryButton').style.display = "none";
+    }</script>
+    <script>function showNC() {
+        document.getElementById('NC').style.display = "block";
+        document.getElementById('NCButton').style.display = "none";
+    }</script>
+
+    <div id="NC"  style="display:none;" class="answer_list" >
+        <h2>Set new cash value</h2>
+        <form action="/">
+            <input type="number" name="newcash" placeholder="Amount">
+        </form>
+    </div>
+    <input type="button" id="NCButton" name="answer" value="Set cash value" onclick="showNC()" />
+
+    <br><br>
+    <div id="addCategories"  style="display:none;" class="answer_list" >
+        <h2>Add categories</h2>
+        <form action="/">
+            <input type="text" name="addCategory" placeholder="Amount">
+        </form>
+    </div>
+    <input type="button" id="addCategoryButton" name="answer" value="Add categories" onclick="showAddCat()" />
+
+    <br><br>
+    <div id="remCategories"  style="display:none;" class="answer_list" >
+        <h2>Remove categories</h2>
+        <form action="/">
+            <select>
+            </select>
+        </form>
+    </div>
+    <input type="button" id="remCategoryButton" name="answer" value="Remove categories" onclick="showRemCat()" />
+{% endblock %}
