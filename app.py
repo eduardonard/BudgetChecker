@@ -18,8 +18,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-db = SQL("sqlite:///finance.db")
-
+db = SQL("sqlite:///progetto.db")
 
 @app.route("/", methods=["GET", "POST"])
 @login_required
@@ -31,9 +30,9 @@ def index():
     incCategori = db.execute("SELECT category FROM categories WHERE user_id = ? AND type = 'income'",user_id)
     expCategori = db.execute("SELECT category FROM categories WHERE user_id = ? AND type = 'liability'",user_id)
     cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
-    home = render_template("index.html", income_db = income_db, liabilities_db = liabilities_db, cash = cash, incCategories=incCategori, expCategories = expCategori, username=username)
+    indes = render_template("index.html", income_db = income_db, liabilities_db = liabilities_db, cash = cash, incCategories=incCategori, expCategories = expCategori, username=username)
     if request.method == "GET":
-        return home
+        return indes
     elif request.method == "POST" and request.form.get("amount") != None:
         cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
         amount = request.form.get("amount")
@@ -46,7 +45,7 @@ def index():
             liabilities_db = db.execute("SELECT amount, category, date FROM transactions WHERE user_id = ? AND amount < 0", user_id)
             cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
             flash("Must select category")
-            return home
+            return indes
         amount = int(amount)
         db.execute("INSERT INTO transactions (user_id, amount, category, date, comment) VALUES (?, ?, ?, ?, ?)", user_id, amount, category, date, comment)
         db.execute("UPDATE users SET cash = ? WHERE id = ?", cash + amount, user_id)
@@ -77,43 +76,21 @@ def settings():
         return redirect("/settings")
     return redirect("/settings")
 
-    
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    """Log user in"""
-
-    # Forget any user_id
     session.clear()
-
-    # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
-
-        # Ensure username was submitted
-        if not request.form.get("username"):
-            return apology("must provide username", 403)
-
-        # Ensure password was submitted
-        elif not request.form.get("password"):
-            return apology("must provide password", 403)
-
-        # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
-
-        # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("invalid username and/or password", 403)
-
-        # Remember which user has logged in
+            return render_template("login.html",error="Invalid username and/or password")
         session["user_id"] = rows[0]["id"]
-
-        # Redirect user to home page
         return redirect("/")
-
-    # User reached route via GET (as by clicking a link or via redirect)
-    else:
+    elif request.method == "GET":
         return render_template("login.html")
 
+@app.route("/home")
+def home():
+    return render_template("homepage.html")
 
 @app.route("/logout")
 def logout():
@@ -124,7 +101,6 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
-
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -158,3 +134,7 @@ def register():
         session["user_id"] = newUser
 
         return redirect("/")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("notfound.html")

@@ -1,29 +1,25 @@
 {% extends "layout.html" %}
 
-
-
 {% block title %}
     Settings
 {% endblock %}
 
 {% block main %}
-    <script>function showAddCat() {
-        document.getElementById('addCategories').style.display = "block";
-        document.getElementById('addCategoryButton').style.display = "none";
-    }
-    function showRemCat() {
-        document.getElementById('remCategories').style.display = "block";
-        document.getElementById('remCategoryButton').style.display = "none";
-    }
-    function showNC() {
-        document.getElementById('NC').style.display = "block";
-        document.getElementById('NCButton').style.display = "none";
-    }
-    function showRemTransaction() {
-        document.getElementById('remTransaction').style.display = "block";
-        document.getElementById('remTransactionButton').style.display = "none";
-    }</script>
+    <script>
+        function hideElse(){
+            document.getElementById('addCategoryButton').style.display = "none";
+            document.getElementById('remCategoryButton').style.display = "none";
+            document.getElementById('NCButton').style.display = "none";
+            document.getElementById('remTransactionButton').style.display = "none";
+        }
 
+        function showDiv(currentDiv) {
+            document.getElementById(currentDiv).style.display = "block";
+            hideElse();
+        }
+    </script>
+
+    <!--NEW CASH BUTTON-->
     <div id="NC"  style="display:none;" class="answer_list">
         <h2>Set new cash value</h2>
         <form method="post" action="/settings">
@@ -31,9 +27,13 @@
             <input type="submit">
         </form>
     </div>
-    <input type="button" id="NCButton" name="answer" value="Set cash value" onclick="showNC()" />
+    <div id="NCButton">
+        <br>
+        <input  class="btn btn-primary" type="button"  name="answer" value="Set cash value" onclick="showDiv('NC')" />
+    </div>
+    
 
-    <br><br>
+    <!--ADD CATEGORIES BUTTON-->
     <div id="addCategories"  style="display:none;" class="answer_list" >
         <h2>Add categories</h2>
         <form action="/settings" method="post">
@@ -46,9 +46,13 @@
             <input type="submit" value="Add">
         </form>
     </div>
-    <input type="button" id="addCategoryButton" name="answer" value="Add categories" onclick="showAddCat()" />
+    <div id="addCategoryButton">
+        <br>
+        <input type="button" class="btn btn-primary"  name="answer" value="Add categories" onclick="showDiv('addCategories')" />
+    </div>
 
-    <br><br>
+
+    <!--REMOVE CATEGORIES BUTTON-->
     <div id="remCategories"  style="display:none;" class="answer_list" >
         <h2>Remove categories</h2>
         <form action="/settings" method="post">
@@ -61,8 +65,13 @@
             <input type="submit" value="Remove">
         </form>
     </div>
-    <input type="button" id="remCategoryButton" name="answer" value="Remove categories" onclick="showRemCat()" />
-    <br><br>
+    <div id="remCategoryButton">
+        <br>
+        <input type="button"  class="btn btn-primary" name="answer" value="Remove categories" onclick="showDiv('remCategories')" />
+    </div>
+    
+    
+    <!--REMOVE TRANSACTIONS BUTTON-->
     <div id="remTransaction"  style="display:none;" class="answer_list" >
         <h2>Remove transactions</h2>
         <form action="/settings" method="post">
@@ -75,5 +84,9 @@
             <input type="submit" value="Remove">
         </form>
     </div>
-    <input type="button" id="remTransactionButton" name="answer" value="Remove transaction" onclick="showRemTransaction()" />
+    <div id="remTransactionButton">
+        <br>
+        <input type="button"  class="btn btn-primary"  name="answer" value="Remove transaction" onclick="showDiv('remTransaction')" />
+    </div>
+    
 {% endblock %}
