@@ -14,6 +14,20 @@
     background-size: cover;
     background-position-y: -150px;
 }
+a:visited{
+  color: var(--one);
+}
+a:hover {
+  color: red;
+}
+
+.buttonLink {
+  background-color: var(--two); 
+  height: 3em;
+  border-radius: 12px; color: 
+  var(--one); 
+  text-decoration: none
+}
 
 body {
     text-align: center;
@@ -34,3 +48,12 @@ footer {
 .wrap{
     margin-bottom:50px;
 }
+
+#div1, #div2, #div3, #div4 {   
+  width: 19%;
+  height: 20vw;
+  margin: 5px;
+  padding: 1%;
+  border: 1px solid black;
+  float: left;
+  }
