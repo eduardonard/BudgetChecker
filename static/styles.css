@@ -6,35 +6,46 @@
   --five: #edf5e1;
 }
 
-#div-with-bg{
-    height: 200px;
-    background-image: url("https://cdn.pixabay.com/photo/2012/08/27/14/19/mountains-55067_960_720.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-position-y: -150px;
-}
-a:visited{
+a:visited:hover{color: var(--five)}
+.myForm{
+  padding: 0.5%;
+  padding: 0.5%;
+  background-color: var(--three);
   color: var(--one);
+  border-radius: 12px;
+  border-color: var(--two);
+  border-width: 4px;
 }
-a:hover {
-  color: red;
+.myButton{
+  padding: 0.5%;
+  background-color: var(--three);
+  color: var(--one);
+  border-radius: 12px;
+  border-color: var(--two);
+  border-width: 4px;
 }
-
+.calculatorButton {
+  margin-left: 2%;
+  background-color: var(--three); 
+  color: var(--one); 
+  font-size: 1.2em;
+  border-radius: 12px;
+  width: 13%;
+  margin-bottom: 1%;
+}
+.calculatorButton:hover{
+  cursor: pointer;
+  margin-left: 3%;
+}
 .buttonLink {
   background-color: var(--two); 
   height: 3em;
-  border-radius: 12px; color: 
-  var(--one); 
+  border-radius: 12px; 
+  color: var(--one); 
   text-decoration: none
 }
 
-body {
-    text-align: center;
-  }
-  table {
-    border-collapse: collapse;
-  }
+body {text-align: center}
   
 footer {
     bottom: 0%;
@@ -49,11 +60,28 @@ footer {
     margin-bottom:50px;
 }
 
-#div1, #div2, #div3, #div4 {   
+.grow {   
   width: 19%;
   height: 20vw;
   margin: 5px;
   padding: 1%;
-  border: 1px solid black;
+  border: 2px solid var(--two);
   float: left;
+  border-radius: 12px; 
+  font-size: 2.1em;
+  margin-top: 10%;
+  }
+
+.grow:hover {   
+  width: 20%;
+  height: 22vw;
+  margin: -0.69px;
+  padding: 1%;
+  border: 2px solid var(--two);
+  float: left;
+  border-radius: 12px; 
+  overflow: hidden;
+  margin-top: 8.5%;
+  font-size: 2.4em;
+  cursor: pointer;
   }

@@ -19,23 +19,24 @@
     <body style="background-color: var(--one); color: var(--three); text-decoration: none;">
         <nav class="navbar navbar-expand-md" style="background-color: var(--one); color: var(--three);">
             <div class="container-fluid">
-                <a style="text-decoration: none; color: var(--three);" href="/"><h1>Personal Finance</h1>
                 <div class="collapse navbar-collapse" id="navbar">
                     {% if session["user_id"] %}
+                    <a style="text-decoration: none; color: var(--three);" href="/home"><h1>Personal Finance</h1>
                         <ul class="navbar-nav me-auto mt-2">
-                            <li class="nav-item"><a class="nav-link active" href="/"> of {{ username }}</a></li>
+                            <li class="nav-item"><a class="nav-link active" style="color: var(--two); font-size: 1.2em;"href="/"> of {{ username }}</a></li>
                         </ul>
                         <ul class="navbar-nav ms-auto mt-2" style="background-color: var(--two); border-radius: 12px; color: var(--one);">
                             <li class="nav-item"><a class="nav-link active" style="color: var(--one);" href="/settings">Settings</a></li>
                             <li class="nav-item"><a class="nav-link active" style="color: var(--one);" href="/logout">Log Out</a></li>
                         </ul>
                     {% else %}
+                    <a style="text-decoration: none; color: var(--three);" href="/"><h1>Personal Finance</h1>
                         <ul class="nav ms-auto" style="background-color: var(--two); border-radius: 12px;">
                             <li class="nav-item">
-                            <a class="nav-link active" style="color: var(--one);" href="register">Register</a>
+                            <a class="nav-link" style="color: var(--one);" href="register">Register</a>
                             </li>
                             <li class="nav-item">
-                            <a class="nav-link active" style="color: var(--one);"href="login">Login</a>
+                            <a class="nav-link" style="color: var(--one);"href="login">Login</a>
                             </li>
                         </ul>
                     {% endif %}

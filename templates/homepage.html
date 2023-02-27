@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Homepage
+    Easy Personal Finance
 {% endblock %}
 
 {% block main %}
@@ -10,9 +10,14 @@
         <h4 style="color: var(--two)">for lazy but alert people</h4>
     </div>
     <div style="margin-left: 17%;">
-        <div id="div1"></div>
-        <div id="div2"></div>
-        <div id="div3"></div>
-        <div id="div4"></div>
+        <div class="grow" onclick="location.href='../financeCalculators'">Finance calculators</div>
+        <div class="grow" onclick="location.href='../investingCalculators'">Investing calculators</div>
+        <div class="grow" onclick="location.href='../healthCalculators'">Health calculators</div>
+        <div class="grow" onclick="location.href='../otherCalculators'">Other (gas maybe)</div>
+    </div>
+    <div style="margin-top: 40%; margin-bottom: 10%;">
+        <h1>About me</h1>
+        <h3>I'm a student</h3>
+        <h5>links</h5>
     </div>
 {% endblock %}

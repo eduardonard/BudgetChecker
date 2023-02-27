@@ -9,53 +9,49 @@
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
         }
-        function showExpDiv() {
-        document.getElementById('expDiv').style.display = "block";
-        document.getElementById('tohidei').style.display = "none";
-        document.getElementById('tohidee').style.display = "none";
+        function showDiv(div) {
+        document.getElementById(div).style.display = "block";
+        document.getElementById('tohide1').style.display = "none";
+        document.getElementById('tohide2').style.display = "none";
         }
-        function showIncDiv() {
-        document.getElementById('incDiv').style.display = "block";
-        document.getElementById('tohidei').style.display = "none";
-        document.getElementById('tohidee').style.display = "none";
-        }</script>
-    <div id="div-with-bg">
+        </script>
+    <div>
         <h1 style="line-height: 250%;">Current cash:  {{ "${:,.2f}".format(cash) }}</h1>
         <br><br>
-        <input type="button" id="tohidee" name="answer" value="Add expense" onclick="showExpDiv()" />
-        <input type="button" id="tohidei" name="answer" value="Add income" onclick="showIncDiv()" />
+        <input type="button" class="myButton" id="tohide1" name="answer" value="Add expense" onclick="showDiv('expDiv')" />
+        <input type="button" class="myButton" id="tohide2" name="answer" value="Add income" onclick="showDiv('incDiv')" />
     </div>
-    <div id="expDiv"  style="display:none; background-repeat: no-repeat;background-position: center;background-size: cover;background-image: url('https://cdn.pixabay.com/photo/2012/08/27/14/19/mountains-55067_960_720.png'); background-position-y: -350px;" class="answer_list" >
+    <div id="expDiv" style="display:none;" class="answer_list" >
         <br>
         <form action="/" method="post" id="myform">  
-            <select name="category" id="cate">
+            <select name="category" class="myForm" id="cate">
                 <option value="nu" disabled selected>Category</option>
                 {% for row in expCategories %}
                     <option value="{{ row['category'] }}">{{ row["category"] }}</option>
                 {% endfor %}
             </select>
-            <input type="number" name="amount" placeholder="Amount" max="0" oninput="this.value = -Math.abs(this.value)" required>
-            <input type="date" name="date" id="theDate" required>
-            <input type="text" name="comment" placeholder="Comment (not required)" autocomplete="off">
+            <input type="number" class="myForm" name="amount" placeholder="Amount" max="0" oninput="this.value = -Math.abs(this.value)" required>
+            <input type="date" class="myForm" name="date" id="theDate" required>
+            <input type="text" class="myForm" name="comment" placeholder="Comment (not required)" autocomplete="off">
             <br><br>
-            <input type="submit" value="Add transaction">
+            <input type="submit"  class="myButton" value="Add transaction">
         </form>
         <br>
     </div>
-    <div id="incDiv"  style="display:none; background-repeat: no-repeat;background-position: center;background-size: cover;background-image: url('https://cdn.pixabay.com/photo/2012/08/27/14/19/mountains-55067_960_720.png'); background-position-y: -350px;" class="answer_list" >
+    <div id="incDiv" style="display:none;" class="answer_list" >
         <br>
         <form action="/" method="post" id="myform">  
-            <select name="category" id="cate">
+            <select name="category"  class="myForm" id="cate">
                 <option value="nu" disabled selected>Category</option>
                 {% for row in incCategories %}
                     <option value="{{ row['category'] }}">{{ row["category"] }}</option>
                 {% endfor %}
             </select>
-            <input type="number" name="amount" placeholder="Amount" required>
-            <input type="date" name="date" id="theDate" required>
-            <input type="text" name="comment" placeholder="Comment (not required)" autocomplete="off">
+            <input type="number"  class="myForm" name="amount" placeholder="Amount" required>
+            <input type="date"  class="myForm" name="date" id="theDate" required>
+            <input type="text"  class="myForm" name="comment" placeholder="Comment (not required)" autocomplete="off">
             <br><br>
-            <input type="submit" value="Add transaction">
+            <input type="submit"  class="myButton" value="Add transaction">
         </form>
         <br>
     </div>
