@@ -4,6 +4,7 @@
   --three: #5cdb95;
   --four: #8EE4Af;
   --five: #edf5e1;
+  --six: #ff0000f5;
 }
 
 a:visited:hover{color: var(--five)}
