@@ -114,11 +114,11 @@ footer {
 }
 @keyframes undrop {
   0% {
-      transform: translateY(-19px);
+      transform: translateY(-17px);
       opacity: 1;
   }
   25% {
-      transform: translateY(-12px);
+      transform: translateY(-10px);
       opacity: 1;
   }
 }
