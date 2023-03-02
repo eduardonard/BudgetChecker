@@ -7,12 +7,26 @@
 {% block main %}
     <div class="mb-3">
         <h1>Finance Calculators</h1>
-        <h4 style="color: var(--two)">for lazy but alert people</h4>
+        <h4 style="color: var(--two)">for lazy but alert people</h4><br>
+        <h4 style="color: var(--two)">Here's a selection of financial calculators, their aim is to highlight hidden costs and reduce them</h4>
     </div>
-    <div>
-        <div class="calculatorButton">Loan</div>
-        <div class="calculatorButton">Rent vs Buy</div>
-        <div class="calculatorButton">Italian from RAL to net calculator</div>
-        <div class="calculatorButton">Other (gas maybe)</div>
+    <div class="cards">
+        <div class="card" onclick="location.href='/loan'">Loan
+            <h5 class="info">Spiegazione molto lunga di quello che va a fare il calcolatore</h5>
+        </div>
+        <div class="card" onclick="location.href='/loan'">Rent vs Buy
+            <h5 class="info">Spiegazione molto lunga di quello che va a fare il calcolatore</h5>
+        </div>
+        
+        <div class="card" onclick="location.href='/loan'">Italian from RAL to net calculator
+            <h5 class="info">Spiegazione molto lunga di quello che va a fare il calcolatore</h5>
+        </div>
+        <div class="card" onclick="location.href='/loan'">Other (gas maybe)
+            <h5 class="info">Spiegazione molto lunga di quello che va a fare il calcolatore</h5>
+        </div>
+        <div class="card" onclick="location.href='/loan'">Other
+            <h5 class="info">Spiegazione molto lunga di quello che va a fare il calcolatore</h5>
+        </div>
     </div>
+
 {% endblock %}

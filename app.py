@@ -4,8 +4,7 @@ from flask import Flask, flash, redirect, render_template, request, session, jso
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
-import datetime
-from helpers import apology, login_required, lookup, usd
+from functools import wraps
 
 app = Flask(__name__)
 
@@ -15,6 +14,20 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 db = SQL("sqlite:///progetto.db")
+
+def login_required(f):
+    """
+    Decorate routes to require login.
+
+    https://flask.palletsprojects.com/en/1.1.x/patterns/viewdecorators/
+    """
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get("user_id") is None:
+            return redirect("/")
+        return f(*args, **kwargs)
+    return decorated_function
+
 
 @app.route("/")
 def index():
@@ -76,7 +89,7 @@ def settings():
     categori = db.execute("SELECT category FROM categories WHERE user_id = ?", user_id)
     transactions = db.execute("SELECT * FROM transactions WHERE user_id = ?", user_id)
     if request.method == "GET":
-        return render_template("settings.html", categories = categori, transactions = transactions, username = username)
+        return render_template("user/settings.html", categories = categori, transactions = transactions, username = username)
     elif request.method == "POST" and request.form.get("newCash") != None:
         db.execute("UPDATE users SET cash = ? WHERE id = ?", int(request.form.get("newCash")), user_id)
     elif request.method == "POST" and request.form.get("addCategory") != None:
@@ -140,6 +153,9 @@ def register():
         session["user_id"] = newUser
         return redirect("login")
 
+@app.route("/test",methods=["GET","POST"])
+def test():
+    return render_template("test/test.html")
 
 @app.errorhandler(404)
 def page_not_found(e):
