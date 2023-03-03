@@ -19,10 +19,34 @@
   .cards { grid-template-columns: repeat(4, 1fr); }
 }
 
+@keyframes drop {
+  0% {
+      transform: translateY(19px);
+      opacity: 0;
+  }
+  25% {
+      transform: translateY(12px);
+      opacity: 0.3;
+  }
+}
+
+@keyframes undrop {
+  0% {
+      transform: translateY(-12px);
+      opacity: 1;
+  }
+  50% {
+      transform: translateY(-8px);
+      opacity: 1;
+  }
+}
+
+
 a:hover{
   text-decoration: none !important;
   color: inherit;
 }
+
 .myForm{
   padding: 0.5%;
   padding: 0.5%;
@@ -59,10 +83,6 @@ footer {
     width:100%;
 }
 
-.wrap{
-    margin-bottom:50px;
-}
-
 .card {
   height: 200px;
   margin-right: 1%;
@@ -91,8 +111,8 @@ footer {
 }
 
 .info{
-  display: none;
   color: var(--two);
+  display: none;
 }
 
 .card:hover {
@@ -102,39 +122,35 @@ footer {
     
 }
 
-@keyframes drop {
-  0% {
-      transform: translateY(19px);
-      opacity: 0;
-  }
-  25% {
-      transform: translateY(12px);
-      opacity: 0.3;
-  }
-}
-@keyframes undrop {
-  0% {
-      transform: translateY(-17px);
-      opacity: 1;
-  }
-  25% {
-      transform: translateY(-10px);
-      opacity: 1;
-  }
-}
-
-
 .card:hover .info{
   display: block;
   animation: drop 0.3s linear forwards 1;
 }
-
 
 .doubleButton{
   justify-content: space-between;
   text-decoration: none;
   color:var(--two);
   padding: 7%;
+  position: relative;
+}
+
+.doubleButton::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 15%;
+  left: 0;
+  background-color: var(--one);
+  transform-origin: bottom;
+  transition: transform 0.25s ease-out;
+}
+
+.doubleButton:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom;
 }
 
 .doubleButtonDiv:hover{

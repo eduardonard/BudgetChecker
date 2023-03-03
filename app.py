@@ -155,7 +155,7 @@ def register():
 
 @app.route("/test",methods=["GET","POST"])
 def test():
-    return render_template("test/test.html")
+    return render_template("test/particles.js-master/demo/index.html")
 
 @app.errorhandler(404)
 def page_not_found(e):
