@@ -29,6 +29,10 @@ def login_required(f):
     return decorated_function
 
 
+@app.route("/test")
+def test():
+    return render_template("calculators/financeCalculators/test.html")
+
 @app.route("/")
 def index():
     return render_template("homepage.html")
@@ -37,13 +41,17 @@ def index():
 def financeCalculators():
     return render_template("calculators/financeCalculators.html")
 
+@app.route("/financeCalculators/loan")
+def financeCalculatorsLoan():
+    return render_template("calculators/financeCalculators/loanCalculator.html")
+
 @app.route("/investmentsCalculators")
 def investmentsCalculators():
-    return render_template("investmentsCalculators.html")
+    return render_template("calculators/investmentsCalculators.html")
 
 @app.route("/healthCalculators")
 def healthCalculators():
-    return render_template("healthCalculators.html")
+    return render_template("calculators/healthCalculators.html")
 
 
 ########### USER PAGES ##########
@@ -152,10 +160,6 @@ def register():
             return render_template("user/register.html",error="User exists")
         session["user_id"] = newUser
         return redirect("login")
-
-@app.route("/test",methods=["GET","POST"])
-def test():
-    return render_template("test/particles.js-master/demo/index.html")
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Loan calculator
+{% endblock %}
+
+{% block main %}
+    <script>
+        function calculate(){
+            let num = document.getElementById("amount").value
+            let den = document.getElementById("rate").value
+            let den = document.getElementById("years").value
+
+            let payments =
+            let interests =
+            let total =
+            
+            document.getElementById("payments").innerHTML = payments
+            document.getElementById("interests").innerHTML = interests
+            document.getElementById("total").innerHTML = total
+        }
+        
+    </script>
+    <style>
+        .inputs{
+            margin: 10px
+        }
+    </style>
+
+    <div class="mb-3">
+        <h1>Loan Calculator</h1>
+        <h4 style="color: var(--two)">for lazy but alert people</h4><br>
+        <h4 style="color: var(--two)">Here's the loan calculator</h4>
+    </div>
+
+    <div>
+        <div class="inputs">
+            <span>Loan amount</span>
+            <input class="myForm" type="numbers" id="numeratore">
+        </div>
+        <div class="inputs">
+            <span>Interest rate</span>
+            <input class="myForm" type="numbers" id="numeratore">
+        </div>
+        <div class="inputs">
+            <span>Years</span>
+            <input class="myForm" type="numbers" id="numeratore">
+        </div>    
+    </div>
+    <input type="button" class="myButton" onclick="calculate()" value="Calculate">
+    <br>
+    <span id="payments"></span>
+    <span id="interests"></span>
+    <span id="total"></span>
+{% endblock %}

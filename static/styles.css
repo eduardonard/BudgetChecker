@@ -50,20 +50,21 @@ a:hover{
 .myForm{
   padding: 0.5%;
   padding: 0.5%;
-  background-color: var(--three);
-  color: var(--one);
+  background-color: var(--one);
+  border-style: solid;
+  border-width: 3px;
+  border-color: var(--three);
   border-radius: 12px;
-  border-color: var(--two);
-  border-width: 4px;
 }
 
 .myButton{
   padding: 0.5%;
-  background-color: var(--three);
-  color: var(--one);
+  background-color: var(--one);
+  color: var(--three);
   border-radius: 12px;
-  border-color: var(--two);
-  border-width: 4px;
+  border-color: var(--three);
+  border-style: solid;
+  border-width: 3px;
 }
 
 .buttonLink {
