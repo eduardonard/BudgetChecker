@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Esempio di formattazione di input con JavaScript</title>
-</head>
-<body>
-	<label for="number-input">Inserisci un numero:</label>
-	<input type="text" id="number-input">
-	
-	<script>
+
 		// Recupera il campo di input
-		const input = document.querySelector('#amount');
+		const input = document.querySelector('#number-input');
 
 		// Aggiunge un ascoltatore di eventi all'input
 		input.addEventListener('input', formatNumber);
@@ -24,6 +15,3 @@
 			// Aggiorna il valore dell'input con la versione formattata
 			e.target.value = formattedValue;
 		}
-	</script>
-</body>
-</html>

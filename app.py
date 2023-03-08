@@ -31,7 +31,7 @@ def login_required(f):
 
 @app.route("/test")
 def test():
-    return render_template("calculators/financeCalculators/test.html")
+    return render_template("test/test.html")
 
 @app.route("/")
 def index():
