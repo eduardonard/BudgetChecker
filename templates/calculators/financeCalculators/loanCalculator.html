@@ -28,19 +28,25 @@
 
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            a = document.getElementById("total").innerHTML
-            b = document.getElementById("interests").innerHTML
-            console.log(a,b,c)
+        
+        function drawChart(colors) {
+            a = parseFloat(document.getElementById("total").innerHTML)
+            b = parseFloat(document.getElementById("interests").innerHTML)
+            c = parseFloat((a - b).toFixed(0))
             var data = google.visualization.arrayToDataTable([
             ['What', 'How much'],
-            ['Loan', c.toFixed(2)],
-            ['Interests', b.toFixed(2)]
-            ]);
+            ['Loan', c],
+            ['Interests', b]
+            ]
+            );
 
             var options = {
-            title: 'My Daily Activities'
+            backgroundColor: {fill:"transparent"},
+            pieSliceBorderColor : "transparent",
+            colors: ["#5cdb95","#379683"],
+            textStyle: {
+                    color: '#ffffff',
+                }
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -50,6 +56,7 @@
 	</script>
     <style>
         .inputs{
+            margin-top: 50px;
             align-items: center;
             width:100%;
             justify-content: center;
@@ -82,7 +89,7 @@
                         <span>Loan amount</span>
                     </div>
                     <div  class="input">
-                        <input class="myStyle" type="text" id="amount" value="100000" onkeyup="calculate(),drawChart()">
+                        <input class="myStyle" type="text" id="amount" value="100000" onkeyup="calculate()">
                     </div>
                     <div class="input">
                         <span>Interest rate (%)</span>
