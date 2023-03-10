@@ -37,6 +37,10 @@ def test():
 def index():
     return render_template("homepage.html")
 
+@app.route("/firstSteps")
+def firstSteps():
+    return render_template("firstSteps.html")
+
 @app.route("/financeCalculators")
 def financeCalculators():
     return render_template("calculators/financeCalculators.html")

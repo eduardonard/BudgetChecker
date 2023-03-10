@@ -5,10 +5,11 @@
 {% endblock %}
 
 {% block main %}
-    <div style="animation: undrop 0.3s linear forwards 1;">
+    <div style="animation: undrop 0.3s linear forwards 1;background-color: var(--one);">
         <div class="mb-3">
             <h1>Easy Personal Finance</h1>
             <h4 style="color: var(--two)">for lazy but alert people</h4>
+            <a href="/firstSteps" style="color: var(--two)">Are you unfamiliar with finance? Consider exploring these subjects: the time value of money, compound interest, debt management, and financial planning.</a>
         </div>
         <div style="justify-content:center; text-align: center; margin: 0% 15%;">
             <h5>
@@ -16,7 +17,7 @@
             </h5>
         </div>
         <div>
-            <h3 style="padding-top: 5%; margin-top: 4%;">Calculators</h3>
+            <h3 style="padding-top: 5%; margin-top: 2%;">Calculators</h3>
             <div class="cards">
                 <div class="card" onclick="location.href='../financeCalculators'">Finance
                     <h5 class="info">Spiegazione molto lunga di quello che va a fare il calcolatore</h5>

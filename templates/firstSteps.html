@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Easy Personal Finance
+{% endblock %}
+
+{% block main %}
+<style>
+    .expl{
+        padding: 2%; 
+        justify-content: space-around;
+        grid-gap: 1rem;
+        display:flex
+    }
+    
+    @media (min-width: 1200px) {
+        .expl { display:grid;grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 1200px)  {
+        .expl { display:grid;grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 650px) {
+        .expl { display:grid;grid-template-columns: repeat(1, 1fr); }
+    }
+
+</style>
+<div style="animation: undrop 0.3s linear forwards 1;">
+    <div class="mb-3">
+        <h1>Easy Personal Finance</h1>
+        <h4 style="color: var(--two)">for lazy but alert people</h4>
+    </div>
+    <div class="expl">
+        <div>
+            <h3>The Time Value of Money</h3>
+             is a fundamental concept in finance that refers to the idea that a dollar today is worth more than a dollar in the future. This is because money today can be invested and earn interest, whereas money in the future cannot. Therefore, the value of money today is higher than the value of the same amount of money in the future. This concept is important in financial decision-making, as it helps individuals and businesses determine the present value of future cash flows, such as investments, loans, and annuities.
+        </div>
+        <div>
+            <h3>Compound interest</h3>
+             is the interest that is earned on both the principal amount and the accumulated interest from previous periods. This means that the interest earned in each period is added to the principal amount, and interest is then calculated on the new, higher balance. As a result, the growth of an investment can accelerate over time, as the interest earned in each period compounds on top of the previous interest earned. Compound interest is a powerful tool for wealth creation, but it can also work against individuals who accumulate debt, as interest charges can quickly accumulate if not managed properly.
+        </div>
+        <div>
+            <h3>Debt management</h3>
+             is the process of managing debt in a way that is responsible and sustainable. This includes strategies for paying off debt, such as prioritizing high-interest debt first, making extra payments when possible, and negotiating with creditors to reduce interest rates or payment amounts. It also involves developing a budget and a plan for managing expenses in order to avoid accumulating more debt. Effective debt management is essential for financial stability and can help individuals and businesses achieve their long-term financial goals.
+        </div>
+        <div>
+            <h3>Financial planning</h3>
+             is the process of creating a roadmap for achieving one's financial goals. This includes setting goals, developing a budget, creating a savings plan, investing for the future, managing debt, and planning for retirement. Financial planning is important for individuals and businesses of all income levels, as it helps ensure that resources are used effectively and efficiently. By creating a plan and sticking to it, individuals can achieve financial security and freedom, while businesses can ensure long-term sustainability and growth.
+        </div>
+    </div>
+</div>
+{% endblock %}
