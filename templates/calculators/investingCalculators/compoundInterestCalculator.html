@@ -58,8 +58,8 @@
             let b=interest.toFixed(0)
             var data = google.visualization.arrayToDataTable([
             ['What', 'How much'],
-            ['Loan', parseInt(a)],
-            ['Interests', parseInt(b)]
+            ['Deposited', parseInt(a)],
+            ['Return', parseInt(b)]
             ]);
 
             var options = {
@@ -86,8 +86,8 @@
     <!-- CORE CHART -->
     <script>
         google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart2);
-        function drawChart2() {
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
             var data = google.visualization.arrayToDataTable(res);
 
             var options = {
@@ -118,7 +118,7 @@
 	</script>
 
     <div class="mb-3">
-        <h1>Loan Calculator</h1>
+        <h1>Compound interests</h1>
         <h4 style="color: var(--two)">for lazy but alert people</h4>
     </div>
     
@@ -126,16 +126,16 @@
         <div class="inputs-and-results">
             <div class="calcBox">
                 <div class="input">
-                    <h5>Loan amount</h5>
+                    <h5>Deposited amount</h5>
                 </div>
                 <div  class="input">
                     <input class="myStyle" type="text" id="amount" value="100000" onkeyup="calculate()">
                 </div>
                 <div class="input">
-                    <h5>Interest rate (%)</h5>
+                    <h5>Expected return (%)</h5>
                 </div>
                 <div class="input">
-                    <input class="myStyle" type="text" id="rate" value="3" onkeyup="calculate()">
+                    <input class="myStyle" type="text" id="rate" value="5" oninput="this.setCustomValidity('Please Enter valid email')" onkeyup="calculate()" required>
                 </div>
                 <div class="input">
                     <h5>Years</h5>

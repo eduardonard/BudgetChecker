@@ -1,0 +1,49 @@
+@media screen and (max-width: 900px) {
+    .calcBig {
+        margin-left: 12%;
+        grid-template-columns: auto !important ; 
+        grid-gap: 7%;
+        justify-content: center !important;
+    }
+    .calcBox{
+        margin-left: 8%;
+    }
+}
+
+.calcBig{
+    margin-top:30px; 
+    display: grid; 
+    grid-template-columns: 40% 30%; 
+    justify-content: center;
+}
+.calcBox{
+    margin-top: 50px;
+    align-items: center;
+    width:450px;
+    justify-content: center;
+    display: grid;  
+    grid-gap: 10px;    
+    grid-template-columns: 180px 180px;
+    border-width: 3px;
+    border-color: var(--three);
+    border-style: solid;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.inputs-and-results{
+    display: grid;
+    grid-gap: 40px;
+}
+
+input { 
+    text-align: center; 
+}
+
+#piechart{
+    margin-top: -70px;
+}
+
+.explanation {
+    margin: 10%;
+}

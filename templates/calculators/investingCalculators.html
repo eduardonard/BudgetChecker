@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Easy Personal Finance
+{% endblock %}
+
+{% block main %}
+    <div class="mb-3">
+        <h1>Investing Calculators</h1>
+        <h4 style="color: var(--two)">for lazy but alert people</h4><br>
+        <h4 style="color: var(--two)">Here's a selection of investing calculators</h4>
+    </div>
+    <div class="cards">
+        <div class="card" onclick="location.href='/investingCalculators/compoundInterest'">Compound interest
+            <h5 class="info">Spiegazione molto lunga di quello che va a fare il calcolatore</h5>
+        </div>
+        <div class="card" onclick="location.href='/investingCalculators'">Loan for a property to rent 
+            <h5 class="info">Spiegazione molto lunga di quello che va a fare il calcolatore</h5>
+        </div>
+    
+    </div>
+
+{% endblock %}

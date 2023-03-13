@@ -49,9 +49,13 @@ def financeCalculators():
 def financeCalculatorsLoan():
     return render_template("calculators/financeCalculators/loanCalculator.html")
 
-@app.route("/investmentsCalculators")
-def investmentsCalculators():
-    return render_template("calculators/investmentsCalculators.html")
+@app.route("/investingCalculators")
+def investingCalculators():
+    return render_template("calculators/investingCalculators.html")
+
+@app.route("/investingCalculators/compoundInterest")
+def investingCalculatorsCompoundInterest():
+    return render_template("calculators/investingCalculators/compoundInterestCalculator.html")
 
 @app.route("/healthCalculators")
 def healthCalculators():

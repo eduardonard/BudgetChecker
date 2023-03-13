@@ -1,0 +1,41 @@
+.doubleButton{
+    justify-content: space-between;
+    text-decoration: none;
+    color:var(--two);
+    padding: 7%;
+    position: relative;
+  }
+  
+  .doubleButton::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 15%;
+    left: 0;
+    background-color: var(--one);
+    transform-origin: bottom;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .doubleButton:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom;
+  }
+  
+  .doubleButtonDiv:hover{
+    background-color: var(--three);
+    color:var(--one);
+  }
+  
+  .doubleButtonDiv{
+    justify-content: space-between; 
+    margin: 10px 10px; 
+    width: 150px;
+    display: flex;
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--three);
+    border-radius: 12px;
+  }

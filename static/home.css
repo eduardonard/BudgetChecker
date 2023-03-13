@@ -1,0 +1,39 @@
+a:hover{
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.myStyle{
+    padding: 1%;
+    color: var(--three);
+    background-color: var(--one);
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--three);
+    border-radius: 12px;
+}
+
+
+.buttonLink {
+    background-color: var(--two); 
+    height: 3em;
+    border-radius: 12px; 
+    color: var(--one); 
+    text-decoration: none
+}
+
+footer {
+    bottom: 0%;
+    color: var(--one);
+    font-size: 0.9em;
+    background-color: var(--three);
+    position: fixed;
+    width:100%;
+}
+
+.mainBody{
+    background-color: var(--one); 
+    color: var(--three); 
+    text-decoration: none;
+    text-align: center;
+}

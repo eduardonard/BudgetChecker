@@ -1,0 +1,79 @@
+@media (min-width: 400px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+@media (min-width: 650px) {
+    .cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 850px) {
+    .cards { grid-template-columns: repeat(4, 1fr); }
+}
+
+@keyframes drop {
+    0% {
+        transform: translateY(19px);
+        opacity: 0;
+    }
+    25% {
+        transform: translateY(12px);
+        opacity: 0.3;
+    }
+}
+
+@keyframes undrop {
+    0% {
+        transform: translateY(-12px);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-8px);
+        opacity: 1;
+    }
+}
+  
+.cards{
+    padding: 2%; 
+    justify-content: space-around;
+    max-width: 1150px;
+    margin: 0 auto;
+    grid-gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 250);
+    grid-template-rows: repeat(1, 250);
+}
+
+.card {
+    height: 200px;
+    margin-right: 1%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 3px solid var(--two);
+    border-radius: 12px; 
+    background-color: var(--one);
+    cursor: pointer;
+    font-size: 200%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: undrop 0.4s linear forwards 1;
+}
+
+
+
+.info{
+color: var(--two);
+display: none;
+}
+
+.card:hover {
+    margin-top: 0%;
+    box-shadow: 2px 5px;
+    animation: drop 0.2s linear forwards 1;
+    
+}
+
+.card:hover .info{
+display: block;
+animation: drop 0.3s linear forwards 1;
+}
